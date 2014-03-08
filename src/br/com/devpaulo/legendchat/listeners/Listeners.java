@@ -83,9 +83,9 @@ public class Listeners implements Listener {
 	private void onChat(AsyncPlayerChatEvent e) {
 		HashMap<String,String> ttt = Legendchat.textToTag();
 		if(ttt.size()>0) {
-			String new_format = "°º°";
+			String new_format = "Â°ÂºÂ°";
 			for(String n : ttt.keySet())
-				new_format+=ttt.get(n)+"°º°";
+				new_format+=ttt.get(n)+"Â°ÂºÂ°";
 			e.setFormat(e.getFormat()+" "+new_format);
 		}
 	}

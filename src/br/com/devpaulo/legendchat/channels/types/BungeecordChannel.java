@@ -241,7 +241,7 @@ public class BungeecordChannel implements Channel {
 		if(ttt.size()>0) {
 			HashSet<Player> p = new HashSet<Player>();
 			p.add(sender);
-			String[] sep = bukkit_format.split("°º°");
+			String[] sep = bukkit_format.split("Â°ÂºÂ°");
 			int i=1;
 			for(String n : ttt.keySet()) {
 				tags.put(n, sep[i]);
@@ -357,22 +357,22 @@ public class BungeecordChannel implements Channel {
 	
 	private String translateStringColor(String color) {
 		switch(color.toLowerCase()) {
-			case "black": {return "§0";}
-			case "darkblue": {return "§1";}
-			case "darkgreen": {return "§2";}
-			case "darkaqua": {return "§3";}
-			case "darkred": {return "§4";}
-			case "darkpurple": {return "§5";}
-			case "gold": {return "§6";}
-			case "gray": {return "§7";}
-			case "darkgray": {return "§8";}
-			case "blue": {return "§9";}
-			case "green": {return "§a";}
-			case "aqua": {return "§b";}
-			case "red": {return "§c";}
-			case "lightpurple": {return "§d";}
-			case "yellow": {return "§e";}
-			default: {return "§f";}
+			case "black": {return ChatColor.BLACK+"";}
+			case "darkblue": {return ChatColor.DARK_BLUE+"";}
+			case "darkgreen": {return ChatColor.DARK_GREEN+"";}
+			case "darkaqua": {return ChatColor.DARK_AQUA+"";}
+			case "darkred": {return ChatColor.DARK_RED+"";}
+			case "darkpurple": {return ChatColor.DARK_PURPLE+"";}
+			case "gold": {return ChatColor.GOLD+"";}
+			case "gray": {return ChatColor.GRAY+"";}
+			case "darkgray": {return ChatColor.DARK_GRAY+"";}
+			case "blue": {return ChatColor.BLUE+"";}
+			case "green": {return ChatColor.GREEN+"";}
+			case "aqua": {return ChatColor.AQUA+"";}
+			case "red": {return ChatColor.RED+"";}
+			case "lightpurple": {return ChatColor.LIGHT_PURPLE+"";}
+			case "yellow": {return ChatColor.YELLOW+"";}
+			default: {return ChatColor.WHITE+"";}
 		}
 	}
 }
