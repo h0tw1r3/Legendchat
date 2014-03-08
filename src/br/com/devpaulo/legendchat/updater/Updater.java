@@ -50,9 +50,9 @@ public class Updater {
 			// Get the version's link
 			String versionLink = (String) latest.get(API_LINK_VALUE);                   - POSSO PEGAR O LINK
 			// Get the version's release type
-			String versionType = (String) latest.get(API_RELEASE_TYPE_VALUE);           - POSSO VER SE … RELEASE
+			String versionType = (String) latest.get(API_RELEASE_TYPE_VALUE);           - POSSO VER SE √â RELEASE
 			// Get the version's game version
-			String versionGameVersion = (String) latest.get(API_GAME_VERSION_VALUE);    - POSSO PEGAR A VERS√O
+			String versionGameVersion = (String) latest.get(API_GAME_VERSION_VALUE);    - POSSO PEGAR A VERS√ÉO
 			*/
         }
 		else

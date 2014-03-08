@@ -362,7 +362,7 @@ public class TemporaryChannel implements Channel {
 		if(ttt.size()>0) {
 			HashSet<Player> p = new HashSet<Player>();
 			p.add(sender);
-			String[] sep = bukkit_format.split("°º°");
+			String[] sep = bukkit_format.split("Â°ÂºÂ°");
 			int i=1;
 			for(String n : ttt.keySet()) {
 				tags.put(n, sep[i]);
@@ -432,22 +432,22 @@ public class TemporaryChannel implements Channel {
 	
 	private String translateStringColor(String color) {
 		switch(color.toLowerCase()) {
-			case "black": {return "§0";}
-			case "darkblue": {return "§1";}
-			case "darkgreen": {return "§2";}
-			case "darkaqua": {return "§3";}
-			case "darkred": {return "§4";}
-			case "darkpurple": {return "§5";}
-			case "gold": {return "§6";}
-			case "gray": {return "§7";}
-			case "darkgray": {return "§8";}
-			case "blue": {return "§9";}
-			case "green": {return "§a";}
-			case "aqua": {return "§b";}
-			case "red": {return "§c";}
-			case "lightpurple": {return "§d";}
-			case "yellow": {return "§e";}
-			default: {return "§f";}
+			case "black": {return "Â§0";}
+			case "darkblue": {return "Â§1";}
+			case "darkgreen": {return "Â§2";}
+			case "darkaqua": {return "Â§3";}
+			case "darkred": {return "Â§4";}
+			case "darkpurple": {return "Â§5";}
+			case "gold": {return "Â§6";}
+			case "gray": {return "Â§7";}
+			case "darkgray": {return "Â§8";}
+			case "blue": {return "Â§9";}
+			case "green": {return "Â§a";}
+			case "aqua": {return "Â§b";}
+			case "red": {return "Â§c";}
+			case "lightpurple": {return "Â§d";}
+			case "yellow": {return "Â§e";}
+			default: {return "Â§f";}
 		}
 	}
 }

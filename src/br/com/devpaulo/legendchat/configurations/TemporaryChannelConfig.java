@@ -151,22 +151,22 @@ public class TemporaryChannelConfig {
 	
 	private String translateStringColor(String color) {
 		switch(color.toLowerCase()) {
-			case "black": {return "ง0";}
-			case "darkblue": {return "ง1";}
-			case "darkgreen": {return "ง2";}
-			case "darkaqua": {return "ง3";}
-			case "darkred": {return "ง4";}
-			case "darkpurple": {return "ง5";}
-			case "gold": {return "ง6";}
-			case "gray": {return "ง7";}
-			case "darkgray": {return "ง8";}
-			case "blue": {return "ง9";}
-			case "green": {return "งa";}
-			case "aqua": {return "งb";}
-			case "red": {return "งc";}
-			case "lightpurple": {return "งd";}
-			case "yellow": {return "งe";}
-			default: {return "งf";}
+			case "black": {return "ยง0";}
+			case "darkblue": {return "ยง1";}
+			case "darkgreen": {return "ยง2";}
+			case "darkaqua": {return "ยง3";}
+			case "darkred": {return "ยง4";}
+			case "darkpurple": {return "ยง5";}
+			case "gold": {return "ยง6";}
+			case "gray": {return "ยง7";}
+			case "darkgray": {return "ยง8";}
+			case "blue": {return "ยง9";}
+			case "green": {return "ยงa";}
+			case "aqua": {return "ยงb";}
+			case "red": {return "ยงc";}
+			case "lightpurple": {return "ยงd";}
+			case "yellow": {return "ยงe";}
+			default: {return "ยงf";}
 		}
 	}
 }
