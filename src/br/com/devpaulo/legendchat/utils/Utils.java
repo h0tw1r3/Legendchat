@@ -44,4 +44,25 @@ public class Utils {
 		if(msg.contains("&R")&&(p.hasPermission("legendchat.color.reset")||p.hasPermission("legendchat.color.allformats")||p.hasPermission("legendchat.admin"))) {msg=msg.replace("&R", ChatColor.RESET.toString());}
 		return msg;
 	}
+
+	public static String translateStringColor(String color) {
+		switch(color.toLowerCase()) {
+			case "black": {return ChatColor.BLACK.toString();}
+			case "darkblue": {return ChatColor.DARK_BLUE.toString();}
+			case "darkgreen": {return ChatColor.DARK_GREEN.toString();}
+			case "darkaqua": {return ChatColor.DARK_AQUA.toString();}
+			case "darkred": {return ChatColor.DARK_RED.toString();}
+			case "darkpurple": {return ChatColor.DARK_PURPLE.toString();}
+			case "gold": {return ChatColor.GOLD.toString();}
+			case "gray": {return ChatColor.GRAY.toString();}
+			case "darkgray": {return ChatColor.DARK_GRAY.toString();}
+			case "blue": {return ChatColor.BLUE.toString();}
+			case "green": {return ChatColor.GREEN.toString();}
+			case "aqua": {return ChatColor.AQUA.toString();}
+			case "red": {return ChatColor.RED.toString();}
+			case "lightpurple": {return ChatColor.LIGHT_PURPLE.toString();}
+			case "yellow": {return ChatColor.YELLOW.toString();}
+			default: {return ChatColor.WHITE.toString();}
+		}
+	}
 }

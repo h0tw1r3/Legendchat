@@ -7,6 +7,7 @@ import java.util.List;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import br.com.devpaulo.legendchat.api.Legendchat;
+import br.com.devpaulo.legendchat.utils.Utils;
 
 public class TemporaryChannelConfig {
 	private String format = "";
@@ -124,7 +125,7 @@ public class TemporaryChannelConfig {
 		enabled=c.getBoolean("enabled");
 		format=c.getString("format");
 		String color3 = c.getString("color");
-		color=translateStringColor(color3);
+		color=Utils.translateStringColor(color3);
 		color2=color3.toLowerCase();
 		shortcut=c.getBoolean("shortcutAllowed");
 		focus=c.getBoolean("needFocus");
@@ -149,24 +150,4 @@ public class TemporaryChannelConfig {
 			blocked_colors.add(n.toLowerCase());
 	}
 	
-	private String translateStringColor(String color) {
-		switch(color.toLowerCase()) {
-			case "black": {return "§0";}
-			case "darkblue": {return "§1";}
-			case "darkgreen": {return "§2";}
-			case "darkaqua": {return "§3";}
-			case "darkred": {return "§4";}
-			case "darkpurple": {return "§5";}
-			case "gold": {return "§6";}
-			case "gray": {return "§7";}
-			case "darkgray": {return "§8";}
-			case "blue": {return "§9";}
-			case "green": {return "§a";}
-			case "aqua": {return "§b";}
-			case "red": {return "§c";}
-			case "lightpurple": {return "§d";}
-			case "yellow": {return "§e";}
-			default: {return "§f";}
-		}
-	}
 }

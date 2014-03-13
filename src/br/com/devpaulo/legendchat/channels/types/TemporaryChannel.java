@@ -40,7 +40,7 @@ public class TemporaryChannel implements Channel {
 		this.name=name;
 		this.nick=nick;
 		this.format=format;
-		this.color=translateStringColor(color);
+		this.color=Utils.translateStringColor(color);
 		color2=color.toLowerCase();
 		this.shortcut=shortcut;
 		this.focus=focus;
@@ -75,7 +75,7 @@ public class TemporaryChannel implements Channel {
 	}
 	
 	public void setColorByString(String color) {
-		this.color=translateStringColor(color);
+		this.color=Utils.translateStringColor(color);
 		color2=color.toLowerCase();
 	}
 	
@@ -430,24 +430,4 @@ public class TemporaryChannel implements Channel {
 			Legendchat.getLogManager().addLogToCache(ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', completa)));
 	}
 	
-	private String translateStringColor(String color) {
-		switch(color.toLowerCase()) {
-			case "black": {return "§0";}
-			case "darkblue": {return "§1";}
-			case "darkgreen": {return "§2";}
-			case "darkaqua": {return "§3";}
-			case "darkred": {return "§4";}
-			case "darkpurple": {return "§5";}
-			case "gold": {return "§6";}
-			case "gray": {return "§7";}
-			case "darkgray": {return "§8";}
-			case "blue": {return "§9";}
-			case "green": {return "§a";}
-			case "aqua": {return "§b";}
-			case "red": {return "§c";}
-			case "lightpurple": {return "§d";}
-			case "yellow": {return "§e";}
-			default: {return "§f";}
-		}
-	}
 }

@@ -37,7 +37,7 @@ public class BungeecordChannel implements Channel {
 		this.name=name;
 		this.nick=nick;
 		this.format=format;
-		this.color=translateStringColor(color);
+		this.color=Utils.translateStringColor(color);
 		color2=color.toLowerCase();
 		this.shortcut=shortcut;
 		this.focus=focus;
@@ -355,24 +355,4 @@ public class BungeecordChannel implements Channel {
 			Bukkit.getConsoleSender().sendMessage(completa);
 	}
 	
-	private String translateStringColor(String color) {
-		switch(color.toLowerCase()) {
-			case "black": {return ChatColor.BLACK+"";}
-			case "darkblue": {return ChatColor.DARK_BLUE+"";}
-			case "darkgreen": {return ChatColor.DARK_GREEN+"";}
-			case "darkaqua": {return ChatColor.DARK_AQUA+"";}
-			case "darkred": {return ChatColor.DARK_RED+"";}
-			case "darkpurple": {return ChatColor.DARK_PURPLE+"";}
-			case "gold": {return ChatColor.GOLD+"";}
-			case "gray": {return ChatColor.GRAY+"";}
-			case "darkgray": {return ChatColor.DARK_GRAY+"";}
-			case "blue": {return ChatColor.BLUE+"";}
-			case "green": {return ChatColor.GREEN+"";}
-			case "aqua": {return ChatColor.AQUA+"";}
-			case "red": {return ChatColor.RED+"";}
-			case "lightpurple": {return ChatColor.LIGHT_PURPLE+"";}
-			case "yellow": {return ChatColor.YELLOW+"";}
-			default: {return ChatColor.WHITE+"";}
-		}
-	}
 }
