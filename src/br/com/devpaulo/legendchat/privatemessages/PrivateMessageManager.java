@@ -22,14 +22,7 @@ public class PrivateMessageManager {
 				return;
 			to=telling.get(from);
 		}
-		removeAfk(from);
-		if(isAfk(to)) {
-			from.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
-			String mot = getPlayerAfkMotive(to);
-			if(mot!=null)
-				from.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
-			return;
-		}
+		Legendchat.getAfkManager().removeAutoAfk(from);
 		PrivateMessageEvent e = new PrivateMessageEvent(from,to,msg);
 		Bukkit.getPluginManager().callEvent(e);
 		if(e.isCancelled())
@@ -45,6 +38,16 @@ public class PrivateMessageManager {
 		if(!ignored)
 			setPlayerReply(to,from);
 		
+		// change to an auto-reply after message receipt.
+		if(Legendchat.getAfkManager().isAfk(to)) {
+			String mot = Legendchat.getAfkManager().getPlayerAfkMotive(to);
+			if(mot!=null) {
+				from.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
+			} else {
+				from.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
+			}
+		}
+
 		from.sendMessage(ChatColor.translateAlternateColorCodes('&', Legendchat.getPrivateMessageFormat("send")).replace("{sender}", from.getName()).replace("{receiver}", to.getName()).replace("{msg}", msg));
 		if(!ignored)
 			to.sendMessage(ChatColor.translateAlternateColorCodes('&', Legendchat.getPrivateMessageFormat("receive")).replace("{sender}", from.getName()).replace("{receiver}", to.getName()).replace("{msg}", msg));
@@ -110,30 +113,7 @@ public class PrivateMessageManager {
 		return l;
 	}
 	
-	public void setAfk(Player p, String motivo) {
-		removeAfk(p);
-		if(motivo.equals(" ")||motivo.length()==0)
-			motivo=null;
-		afk.put(p, motivo);
-	}
-	
-	public void removeAfk(Player p) {
-		if(isAfk(p))
-			afk.remove(p);
-	}
-	
-	public boolean isAfk(Player p) {
-		return afk.containsKey(p);
-	}
-	
-	public String getPlayerAfkMotive(Player p) {
-		if(isAfk(p))
-			return afk.get(p);
-		return null;
-	}
-	
 	public void playerDisconnect(Player p) {
-		removeAfk(p);
 		unlockPlayerTell(p);
 		if(reply.containsKey(p))
 			reply.remove(p);

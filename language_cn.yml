@@ -1,6 +1,7 @@
 message: '消息'
 channel: '频道'
 motive: '主题'
+automotive: '???'
 ignored: '-已忽略-'
 special: '&e没人能看见你的消息.'
 bungeecord_server: 'NAME_IN_LANGUAGE_FILE'

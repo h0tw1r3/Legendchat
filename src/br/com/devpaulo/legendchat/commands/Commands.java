@@ -619,26 +619,26 @@ public class Commands implements CommandExecutor {
 						sender.sendMessage(Legendchat.getMessageManager().getMessage("error6"));
 						return true;
 					}
-					if(Legendchat.getPrivateMessageManager().isAfk(to)) {
-						sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
-						String mot = Legendchat.getPrivateMessageManager().getPlayerAfkMotive(to);
-						if(mot!=null)
-							if(mot.length()>0)
-								sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
-						return true;
+					if(Legendchat.getAfkManager().isAfk(to)) {
+						String mot = Legendchat.getAfkManager().getPlayerAfkMotive(to);
+						if(mot!=null) {
+							sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
+						} else {
+							sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
+						}
 					}
 					Legendchat.getPrivateMessageManager().lockPlayerTell((Player)sender, to);
 					sender.sendMessage(Legendchat.getMessageManager().getMessage("message10").replace("@player", to.getName()));
 				}
 			}
 			else {
-				if(Legendchat.getPrivateMessageManager().isAfk(to)) {
-					sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
-					String mot = Legendchat.getPrivateMessageManager().getPlayerAfkMotive(to);
-					if(mot!=null)
-						if(mot.length()>0)
-							sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
-					return true;
+				if(Legendchat.getAfkManager().isAfk(to)) {
+					String mot = Legendchat.getAfkManager().getPlayerAfkMotive(to);
+					if(mot!=null) {
+						sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
+					} else {
+						sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
+					}
 				}
 				String msg = "";
 				for(int i=1;i<args.length;i++) {
@@ -667,13 +667,13 @@ public class Commands implements CommandExecutor {
 				return true;
 			}
 			Player sendto = Legendchat.getPrivateMessageManager().getPlayerReply((Player)sender);
-			if(Legendchat.getPrivateMessageManager().isAfk(sendto)) {
-				sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
-				String mot = Legendchat.getPrivateMessageManager().getPlayerAfkMotive(sendto);
-				if(mot!=null)
-					if(mot.length()>0)
-						sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
-				return true;
+			if(Legendchat.getAfkManager().isAfk(sendto)) {
+				String mot = Legendchat.getAfkManager().getPlayerAfkMotive(sendto);
+				if(mot!=null) {
+					sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_2").replace("@motive", mot));
+				} else {
+					sender.sendMessage(Legendchat.getMessageManager().getMessage("pm_error2_1"));
+				}
 			}
 			String msg = "";
 			for(int i=0;i<args.length;i++) {
@@ -683,38 +683,6 @@ public class Commands implements CommandExecutor {
 					msg+=" "+args[i];
 			}
 			Legendchat.getPrivateMessageManager().replyPlayer((Player)sender, msg);
-			return true;
-		}
-		if(cmd.getName().equalsIgnoreCase("afk")) {
-			if(sender==Bukkit.getConsoleSender())
-				return false;
-			if(sender.hasPermission("legendchat.block.afk")&&!sender.hasPermission("legendchat.admin")) {
-				sender.sendMessage(Legendchat.getMessageManager().getMessage("error6"));
-				return true;
-			}
-			if(Legendchat.getPrivateMessageManager().isAfk((Player)sender)&&args.length==0) {
-				Legendchat.getPrivateMessageManager().removeAfk((Player)sender);
-				sender.sendMessage(Legendchat.getMessageManager().getMessage("message13"));
-			}
-			else {
-				String mot = "";
-				if(args.length>0)
-					for(int i=0;i<args.length;i++) {
-						if(mot.length()==0)
-							mot=args[i];
-						else
-							mot=" "+args[i];
-					}
-				if(mot.length()>0)
-					if(sender.hasPermission("legendchat.block.afkmotive")&&!sender.hasPermission("legendchat.admin")) {
-						sender.sendMessage(Legendchat.getMessageManager().getMessage("error6"));
-						return true;
-					}
-				Legendchat.getPrivateMessageManager().setAfk((Player)sender,mot);
-				sender.sendMessage(Legendchat.getMessageManager().getMessage("message12"));
-				if(mot.length()==0)
-					sender.sendMessage(Legendchat.getMessageManager().getMessage("wrongcmd").replace("@command", "/afk ["+Legendchat.getMessageManager().getMessage("motive")+"]"));
-			}
 			return true;
 		}
 		if(cmd.getName().equalsIgnoreCase("channel")) {

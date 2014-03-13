@@ -19,6 +19,7 @@ import br.com.devpaulo.legendchat.api.Legendchat;
 import br.com.devpaulo.legendchat.channels.types.BungeecordChannel;
 import br.com.devpaulo.legendchat.channels.types.PermanentChannel;
 import br.com.devpaulo.legendchat.commands.Commands;
+import br.com.devpaulo.legendchat.commands.Afk;
 import br.com.devpaulo.legendchat.listeners.Listeners;
 import br.com.devpaulo.legendchat.updater.Updater;
 
@@ -42,7 +43,7 @@ public class Main extends JavaPlugin implements PluginMessageListener {
 		getServer().getPluginCommand("channel").setExecutor(new Commands());
 		getServer().getPluginCommand("tell").setExecutor(new Commands());
 		getServer().getPluginCommand("reply").setExecutor(new Commands());
-		getServer().getPluginCommand("afk").setExecutor(new Commands());
+		getServer().getPluginCommand("afk").setExecutor(new Afk());
 		getServer().getPluginCommand("ignore").setExecutor(new Commands());
 		getServer().getPluginCommand("tempchannel").setExecutor(new Commands());
 		getServer().getPluginManager().registerEvents(new Listeners(), this);
@@ -136,7 +137,7 @@ public class Main extends JavaPlugin implements PluginMessageListener {
 		else {
 	        getLogger().info("Hooked to Vault (Chat).");
 		}
-		
+
 		if(getConfig().getBoolean("bungeecord.use"))
 			if(Legendchat.getChannelManager().existsChannel(getConfig().getString("bungeecord.channel")))
 				bungeeActive=true;

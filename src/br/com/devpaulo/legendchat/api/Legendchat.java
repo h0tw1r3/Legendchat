@@ -19,6 +19,7 @@ import br.com.devpaulo.legendchat.logs.LogManager;
 import br.com.devpaulo.legendchat.messages.MessageManager;
 import br.com.devpaulo.legendchat.mutes.MuteManager;
 import br.com.devpaulo.legendchat.players.PlayerManager;
+import br.com.devpaulo.legendchat.afk.AfkManager;
 import br.com.devpaulo.legendchat.privatemessages.PrivateMessageManager;
 
 public class Legendchat {
@@ -29,6 +30,7 @@ public class Legendchat {
 	private static boolean sendFakeMessageToChat = false;
 	private static boolean blockShortcutsWhenCancelled = false;
 	private static boolean isBungeecordActive = false;
+	private static boolean isAfkActive = false;
 	private static boolean isCensorActive = false;
 	private static boolean logToFile = false;
 	private static int logToFileTime = 10;
@@ -51,6 +53,7 @@ public class Legendchat {
 	private static LogManager lm = null;
 	private static TemporaryChannelManager tcm = null;
 	private static ConfigManager com = null;
+	private static AfkManager afk = null;
 	
 	public static ChannelManager getChannelManager() {
 		return cm;
@@ -99,6 +102,10 @@ public class Legendchat {
 	public static Channel getDefaultChannel() {
 		return defaultChannel;
 	}
+
+	public static AfkManager getAfkManager() {
+		return afk;
+	}
 	
 	public static boolean logToBukkit() {
 		return logToBukkit;
@@ -126,6 +133,10 @@ public class Legendchat {
 	
 	public static boolean isBungeecordActive() {
 		return isBungeecordActive;
+	}
+
+	public static boolean isAfkActive() {
+		return isAfkActive;
 	}
 	
 	public static boolean isCensorActive() {
@@ -186,6 +197,7 @@ public class Legendchat {
 			lm=new LogManager();
 			tcm=new TemporaryChannelManager();
 			com=new ConfigManager();
+            afk=new AfkManager();
 			return;
 		}
 		FileConfiguration fc = Bukkit.getPluginManager().getPlugin("Legendchat").getConfig();
@@ -198,6 +210,14 @@ public class Legendchat {
 		blockShortcutsWhenCancelled=fc.getBoolean("block_shortcuts_when_cancelled");
 		isBungeecordActive=Main.bungeeActive;
 		bungeecordChannel=(BungeecordChannel) getChannelManager().getChannelByName(fc.getString("bungeecord.channel"));
+		if (fc.getBoolean("afk.use", true)) {
+			getAfkManager().setAutoTimeout(fc.getInt("afk.auto", 0));
+			getAfkManager().enable();
+			isAfkActive = true;
+		} else {
+			getAfkManager().disable();
+			isAfkActive = false;
+		}
 		isCensorActive=fc.getBoolean("censor.use");
 		Legendchat.getCensorManager().loadCensoredWords(fc.getStringList("censor.censored_words"));
 		logToFile=fc.getBoolean("log_to_file.use");
