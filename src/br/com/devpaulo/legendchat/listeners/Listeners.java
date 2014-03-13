@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import br.com.devpaulo.legendchat.Main;
 import br.com.devpaulo.legendchat.api.Legendchat;
@@ -41,6 +42,7 @@ public class Listeners implements Listener {
 		Legendchat.getPrivateMessageManager().playerDisconnect(e.getPlayer());
 		Legendchat.getIgnoreManager().playerDisconnect(e.getPlayer());
 		Legendchat.getTemporaryChannelManager().playerDisconnect(e.getPlayer());
+		Legendchat.getAfkManager().playerDisconnect(e.getPlayer());
 	}
 	
 	@EventHandler
@@ -49,6 +51,7 @@ public class Listeners implements Listener {
 		Legendchat.getPrivateMessageManager().playerDisconnect(e.getPlayer());
 		Legendchat.getIgnoreManager().playerDisconnect(e.getPlayer());
 		Legendchat.getTemporaryChannelManager().playerDisconnect(e.getPlayer());
+		Legendchat.getAfkManager().playerDisconnect(e.getPlayer());
 	}
 	
 	private static HashMap<AsyncPlayerChatEvent,Boolean> chats = new HashMap<AsyncPlayerChatEvent,Boolean>();
@@ -93,7 +96,7 @@ public class Listeners implements Listener {
 	@EventHandler(ignoreCancelled = false, priority = EventPriority.MONITOR)
 	private void onChat2(AsyncPlayerChatEvent e) {
 		if(e.getMessage()!=null&&!chats.containsKey(e)&&!e.isCancelled()) {
-			Legendchat.getPrivateMessageManager().removeAfk(e.getPlayer());
+			Legendchat.getAfkManager().removeAutoAfk(e.getPlayer());
 			if(Legendchat.getPrivateMessageManager().isPlayerTellLocked(e.getPlayer())) {
 				Legendchat.getPrivateMessageManager().tellPlayer(e.getPlayer(), null, e.getMessage());
 			}
@@ -161,7 +164,12 @@ public class Listeners implements Listener {
 			}
 		}
 	}
-	
+
+	@EventHandler(priority = EventPriority.MONITOR)
+	private void onPlayerMove(PlayerMoveEvent e) {
+		Legendchat.getAfkManager().removeAutoAfk(e.getPlayer());
+	}
+
 	private boolean hasAnyPermission(Player sender) {
 		if(sender.hasPermission("legendchat.admin.channel"))
 			return true;

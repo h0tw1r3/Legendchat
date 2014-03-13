@@ -25,3 +25,6 @@ private_message_format:
 censor:
   use: true
   censored_words: []
+afk:
+  use: true
+  auto: 120
